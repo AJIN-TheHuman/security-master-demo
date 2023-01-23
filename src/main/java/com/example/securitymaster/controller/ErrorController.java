@@ -8,18 +8,20 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
 @ControllerAdvice
 public class ErrorController {
 
     private Logger logger= LoggerFactory.getLogger(ErrorController.class);
 
+
     @ExceptionHandler(Throwable.class)
+
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handErrors(Throwable throwable, Model model)throws Throwable {
-//        logger.info(throwable.getCause().getMessage());
-        String msg=throwable != null ? throwable.getMessage() : "unknown error.";
+    public String handleErrors(Throwable throwable, Model model)throws  Throwable{
+//         logger.info(throwable.getCause().getMessage());
+        String msg=throwable !=null ? throwable.getMessage() : "unknown error" ;
+
         model.addAttribute("errorMessage",msg);
-        return "error";
+        return "error1";
     }
 }
